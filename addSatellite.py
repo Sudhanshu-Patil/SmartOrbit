@@ -488,7 +488,8 @@ def predict_future_collisions(future_times):
 
 def update():
     if cameraShifted and following_satellite:
-        camera.position = 2 * following_satellite.position
+        target_position = 2 * following_satellite.position
+        camera.position = lerp(camera.position, target_position, 0.19)  # Adjust the smoothing factor
         # camera.look_at(earth)   # TODO: Fix this
 
     earth.rotation_y -= time.dt * getTimeFactor() * 360 / 86400
